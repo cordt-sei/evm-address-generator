@@ -11,6 +11,7 @@
     "bech32": "^2.0.0",
     "better-sqlite3": "^11.5.0",
     "node-fetch": "^3.3.2",
-    "p-limit": "^6.1.0"
+    "p-limit": "^6.1.0",
+    "worker-threads": "^1.0.0"
   }
 }

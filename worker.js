@@ -1,3 +1,5 @@
+// worker.js
+
 import fetch from 'node-fetch';
 import { parentPort, workerData } from 'worker_threads';
 import { fromBase64 } from '@cosmjs/encoding';
@@ -17,13 +19,13 @@ async function fetchPubKey(address, endpoint) {
     const url = `${endpoint}/cosmos/auth/v1beta1/accounts/${address}`;
     try {
         const response = await fetch(url);
-        if (!response.ok) {
-            throw new Error(`HTTP status ${response.status}`);
-        }
+        if (!response.ok) throw new Error(`HTTP status ${response.status}`);
+        
         const data = await response.json();
         if (data.account && data.account.pub_key && data.account.pub_key.key) {
             return data.account.pub_key.key;
         } else {
+            console.warn(`[Worker] No pubkey found for ${address}. Skipping...`);
             return null;
         }
     } catch (error) {
