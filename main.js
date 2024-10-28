@@ -4,7 +4,7 @@ import Database from 'better-sqlite3';
 import fs from 'fs';
 
 // Setup SQLite Database
-const dbFilePath = './indexer.db';
+const dbFilePath = './wallets.db';
 if (!fs.existsSync(dbFilePath)) {
     console.log('[Setup] Database not found. Creating a new database...');
     const db = new Database(dbFilePath);
